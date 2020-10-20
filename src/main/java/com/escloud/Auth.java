@@ -1,8 +1,7 @@
 package com.escloud;
 
-
 import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Date;
@@ -10,9 +9,11 @@ import java.util.Date;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
+import org.json.JSONObject;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import java.util.Map;
-
 import java.util.Random;
 
 public class Auth {
@@ -29,27 +30,27 @@ public class Auth {
         return accessKey;
     }
 
+    public String getSecretKey() {
+        return secretKey;
+    }
 
-    public String makeSignature(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        return Base64.getEncoder().encodeToString(encrypt(text).getBytes("UTF-8")).replace('+', '-').replace('/', '_');
+    private static byte[] hamcsha1(byte[] data, byte[] key) {
+        try {
+            SecretKeySpec signingKey = new SecretKeySpec(key, "HmacSHA1");
+            Mac mac = Mac.getInstance("HmacSHA1");
+            mac.init(signingKey);
+            return mac.doFinal(data);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
-    public static String encrypt(String srcStr) {
-        try {
-            StringBuilder result = new StringBuilder();
-            MessageDigest md = MessageDigest.getInstance("SHA1");
-            byte[] bytes = md.digest(srcStr.getBytes("utf-8"));
-            for (byte b : bytes) {
-                String hex = Integer.toHexString(b & 0xFF);
-                if (hex.length() == 1)
-                    result.append("0");
-                result.append(hex);
-            }
-            return result.toString();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public String makeSignature(String text, String key) {
+        return new String(Base64.getEncoder().encode(hamcsha1(text.getBytes(), key.getBytes())), java.nio.charset.Charset.forName("UTF-8")).replace('+', '-').replace('/', '_');
     }
 
 
@@ -70,6 +71,34 @@ public class Auth {
     }
 
     /**
+     * @param uri
+     * @param params
+     * @param lifetime
+     * @param nonce
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    public String makeRequestAuthorization(String uri, Map<String, String> params, int lifetime, boolean nonce) throws UnsupportedEncodingException {
+
+        JSONObject jsonObj = new JSONObject(params);
+
+        String nonceString;
+        if (nonce) {
+            nonceString = getRandomString(16);
+        } else {
+            nonceString = "no";
+        }
+
+        Long deadline = (System.currentTimeMillis() + lifetime * 1000) / 1000;
+
+        String signature = this.makeSignature(nonceString + "\n" + deadline + "\n" + uri + "\n" + jsonObj.toString(), this.secretKey);
+
+        System.out.print(signature);
+
+        return "Signature " + this.accessKey + ":" + deadline + ":" + nonceString + ":" + signature;
+    }
+
+    /**
      * @param payload
      * @return
      */
@@ -77,11 +106,11 @@ public class Auth {
         JWTCreator.Builder builder = JWT.create();
 
         for (String key : payload.keySet()) {
-            if (payload.get(key).getClass().toString() == "Boolean") {
+            if (payload.get(key) instanceof Boolean) {
                 builder.withClaim(key, (Boolean) payload.get(key));
-            } else if (payload.get(key).getClass().toString() == "String") {
+            } else if (payload.get(key) instanceof String) {
                 builder.withClaim(key, (String) payload.get(key));
-            } else if (payload.get(key).getClass().toString() == "Date") {
+            } else if (payload.get(key) instanceof Date) {
                 builder.withClaim(key, (Date) payload.get(key));
             }
         }

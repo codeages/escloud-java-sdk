@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.escloud.httpClient.Client;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,12 +54,13 @@ public class BaseService {
         return this.client;
     }
 
-    public void setClient(Client client){
+    public void setClient(Client client) {
         this.client = client;
     }
 
     protected String request(String method, String uri, Map<String, String> params, Map<String, String> headers, String node) throws URISyntaxException, UnsupportedEncodingException, JSONException {
-        String authorization = this.auth.makeRequestAuthorization(uri, 600);
+        String authorization = this.auth.makeRequestAuthorization(uri, params, 600, true);
+        System.out.println(authorization);
         headers.put("Authorization", authorization);
         headers.put("Content-Type", "application/json");
 

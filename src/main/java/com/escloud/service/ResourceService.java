@@ -15,7 +15,7 @@ import java.util.Map;
  * 资源服务
  */
 public class ResourceService extends BaseService {
-    protected String host = "resource-service.qiqiuyun.net";
+    protected String host = "resource-service.cloud-test.edusoho.cn";
 
     public ResourceService(Auth auth, Map<String, String> options) {
         options.put("host", this.host);
