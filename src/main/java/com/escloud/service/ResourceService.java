@@ -2,9 +2,9 @@ package com.escloud.service;
 
 import com.escloud.Auth;
 import com.escloud.domain.Resource;
-import com.escloud.service.upload.FileRecorder;
-import com.escloud.service.upload.Recorder;
-import com.escloud.service.upload.UploadManager;
+import com.escloud.helper.upload.FileRecorder;
+import com.escloud.helper.upload.Recorder;
+import com.escloud.helper.upload.UploadManager;
 import com.escloud.util.Json;
 import org.json.JSONException;
 

@@ -1,4 +1,4 @@
-package com.escloud.service.upload;
+package com.escloud.helper.upload;
 
 import com.escloud.httpClient.Client;
 import com.escloud.util.Json;

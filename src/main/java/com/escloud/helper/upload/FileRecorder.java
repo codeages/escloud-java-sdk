@@ -1,4 +1,4 @@
-package com.escloud.service.upload;
+package com.escloud.helper.upload;
 
 import java.io.File;
 import java.io.FileInputStream;
