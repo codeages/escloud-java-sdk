@@ -61,7 +61,7 @@ public class Resource implements Serializable {
     /**
      * 更新的时间戳,秒
      */
-    private Integer updatedTIme;
+    private Integer updatedTime;
 
     public String getNo() {
         return no;
@@ -151,11 +151,11 @@ public class Resource implements Serializable {
         this.createdTime = createdTime;
     }
 
-    public Integer getUpdatedTIme() {
-        return updatedTIme;
+    public Integer getUpdatedTime() {
+        return updatedTime;
     }
 
-    public void setUpdatedTIme(Integer updatedTIme) {
-        this.updatedTIme = updatedTIme;
+    public void setUpdatedTime(Integer updatedTime) {
+        this.updatedTime = updatedTime;
     }
 }
