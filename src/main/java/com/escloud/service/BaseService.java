@@ -1,20 +1,18 @@
 package com.escloud.service;
 
 import com.escloud.Auth;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
-import java.util.Map;
-
 import com.escloud.httpClient.Client;
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.util.Map;
+
 public class BaseService {
 
     private static Logger logger = LoggerFactory.getLogger(BaseService.class);
-
 
     protected Auth auth;
 
