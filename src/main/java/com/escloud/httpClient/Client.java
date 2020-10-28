@@ -2,6 +2,7 @@ package com.escloud.httpClient;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.*;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.Map;
 
 public class Client {
 
@@ -75,6 +76,38 @@ public class Client {
             return EntityUtils.toString(responseEntity);
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public String request(String method, String uri, byte[] body, Map<String, String> headers) throws URISyntaxException, JSONException {
+        HttpUriRequest request = null;
+
+        HttpPost post = new HttpPost();
+        post.setURI(new URI(uri));
+        post.setEntity(new ByteArrayEntity(body));
+        request = post;
+
+        if (request != null) {
+            if (headers != null) {
+                for (String key : headers.keySet()) {
+                    request.setHeader(key, headers.get(key));
+                }
+            }
+        }
+        try {
+            CloseableHttpResponse httpResponse = null;
+            CloseableHttpClient httpclient = null;
+            httpclient = HttpClients.createDefault();
+
+            httpResponse = httpclient.execute(request);
+            HttpEntity responseEntity = httpResponse.getEntity();
+            if (httpResponse.getStatusLine().getStatusCode() != 200) {
+                throw new Exception(EntityUtils.toString(responseEntity));
+            }
+            return EntityUtils.toString(responseEntity);
         } catch (Exception e) {
             e.printStackTrace();
         }

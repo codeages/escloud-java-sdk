@@ -4,7 +4,7 @@ import com.escloud.Auth;
 import com.escloud.domain.Resource;
 import com.escloud.httpClient.Client;
 import com.escloud.service.ResourceService;
-import com.escloud.util.json;
+import com.escloud.util.Json;
 import com.google.gson.Gson;
 import org.json.JSONException;
 import org.junit.Assert;
@@ -39,56 +39,6 @@ public class ResourceTest {
     }
 
     @Test
-    public void startUploadTest() throws UnsupportedEncodingException, URISyntaxException, JSONException {
-        Map mockResult = new HashMap();
-        mockResult.put("no", "test_no_1");
-        mockResult.put("extno", "test_extno_1");
-        mockResult.put("uploadToken", "upload_token_1");
-        mockResult.put("uploadUrl", "//upload.qiqiuyun.net");
-        mockResult.put("reskey", "1577089429/5e007995f3d5794220468");
-
-        when(this.mockClient.request(Mockito.anyString(), Mockito.anyString(), Mockito.anyMap(), Mockito.anyMap())).thenReturn(new Gson().toJson(mockResult));
-
-        Map<String, String> params = new HashMap();
-        params.put("name", "test.mp4");// 文件名
-        params.put("extno", "extno_test_1");// 业务端自己的资源标识
-
-        this.resourceService.setClient(this.mockClient);
-
-        Map result = this.resourceService.startUpload(params);
-
-        Assert.assertEquals(result.get("no"), result.get("no"));
-        Assert.assertEquals(mockResult.get("uploadToken"), result.get("uploadToken"));
-        Assert.assertEquals(mockResult.get("extno"), result.get("extno"));
-        Assert.assertEquals(mockResult.get("uploadUrl"), result.get("uploadUrl"));
-        Assert.assertEquals(mockResult.get("reskey"), result.get("reskey"));
-    }
-
-    @Test
-    public void finishUploadTest() throws UnsupportedEncodingException, URISyntaxException, JSONException {
-        Map mockResult = new HashMap();
-        mockResult.put("no", "test_no_1");//资源唯一编号
-        mockResult.put("extno", "test_extno_1");
-        mockResult.put("name", "test.mp4");
-        mockResult.put("size", 102400);// 文件大小
-        mockResult.put("length", 200);// 视频时长，PPT页数
-        Gson gson = new Gson();
-
-        when(this.mockClient.request(Mockito.anyString(), Mockito.anyString(), Mockito.anyMap(), Mockito.anyMap())).thenReturn(gson.toJson(mockResult));
-
-
-        this.resourceService.setClient(this.mockClient);
-        Map result = this.resourceService.finishUpload("test_no1");
-
-
-        Assert.assertEquals(mockResult.get("no"), result.get("no"));
-        Assert.assertEquals(mockResult.get("extno"), result.get("extno"));
-        Assert.assertEquals(mockResult.get("name"), result.get("name"));
-        Assert.assertEquals(mockResult.get("size"), ((Double) result.get("size")).intValue());
-        Assert.assertEquals(mockResult.get("length"), ((Double) result.get("length")).intValue());
-    }
-
-    @Test
     public void getTest() throws UnsupportedEncodingException, URISyntaxException, JSONException {
         Map mockResult = mockResource();
         Gson gson = new Gson();
@@ -109,7 +59,7 @@ public class ResourceTest {
     @Test
     public void searchTest() throws UnsupportedEncodingException, URISyntaxException, JSONException {
         String mockResult = new String("[{\"no\":\"test_no_1\",\"extno\":\"test_extno_1\",\"name\":\"test.mp4\",\"type\":\"video\",\"size\":\"102400\",\"length\":\"200\",\"thumbnail\":\"\",\"processStatus\":\"ok\",\"isShare\":\"1\",\"processedTime\":\"1543299710\",\"createdTime\":\"1543299685\",\"updatedTime\":\"0\"}]");
-        List<Resource> mockResultResources = json.jsonToObjectList(mockResult, Resource.class);
+        List<Resource> mockResultResources = Json.jsonToObjectList(mockResult, Resource.class);
         when(this.mockClient.request(Mockito.anyString(), Mockito.anyString(), Mockito.anyMap(), Mockito.anyMap())).thenReturn(mockResult);
         this.resourceService.setClient(this.mockClient);
 

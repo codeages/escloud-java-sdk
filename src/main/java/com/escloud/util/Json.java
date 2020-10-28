@@ -8,7 +8,7 @@ import com.google.gson.JsonParser;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class json {
+public final class Json {
     public static <T> List<T> jsonToObjectList(String json, Class<T> classOfT) {
         JsonParser parser = new JsonParser();
         JsonArray jsonArray = parser.parse(json).getAsJsonArray();
