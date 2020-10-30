@@ -1,7 +1,7 @@
-package com.escloud.service;
+package com.codeages.escloud.service;
 
-import com.escloud.Auth;
-import com.escloud.httpClient.Client;
+import com.codeages.escloud.httpClient.Client;
+import com.codeages.escloud.Auth;
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

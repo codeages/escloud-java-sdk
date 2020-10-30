@@ -1,11 +1,11 @@
-package com.escloud.service;
+package com.codeages.escloud.service;
 
-import com.escloud.Auth;
-import com.escloud.domain.Resource;
-import com.escloud.helper.upload.FileRecorder;
-import com.escloud.helper.upload.Recorder;
-import com.escloud.helper.upload.UploadManager;
-import com.escloud.util.Json;
+import com.codeages.escloud.Auth;
+import com.codeages.escloud.helper.upload.FileRecorder;
+import com.codeages.escloud.helper.upload.Recorder;
+import com.codeages.escloud.helper.upload.UploadManager;
+import com.codeages.escloud.util.Json;
+import com.codeages.escloud.domain.Resource;
 import org.json.JSONException;
 
 import java.io.File;

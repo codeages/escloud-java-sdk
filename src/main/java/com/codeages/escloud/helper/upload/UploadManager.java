@@ -1,4 +1,4 @@
-package com.escloud.helper.upload;
+package com.codeages.escloud.helper.upload;
 
 import java.io.File;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.escloud.domain;
+package com.codeages.escloud.domain;
 
 import java.io.Serializable;
 

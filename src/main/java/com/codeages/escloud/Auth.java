@@ -1,4 +1,4 @@
-package com.escloud;
+package com.codeages.escloud;
 
 
 import java.io.UnsupportedEncodingException;

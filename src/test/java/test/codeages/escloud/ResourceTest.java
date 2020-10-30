@@ -1,10 +1,10 @@
-package test.escloud;
+package test.codeages.escloud;
 
-import com.escloud.Auth;
-import com.escloud.domain.Resource;
-import com.escloud.httpClient.Client;
-import com.escloud.service.ResourceService;
-import com.escloud.util.Json;
+import com.codeages.escloud.Auth;
+import com.codeages.escloud.domain.Resource;
+import com.codeages.escloud.httpClient.Client;
+import com.codeages.escloud.service.ResourceService;
+import com.codeages.escloud.util.Json;
 import com.google.gson.Gson;
 import org.json.JSONException;
 import org.junit.Assert;

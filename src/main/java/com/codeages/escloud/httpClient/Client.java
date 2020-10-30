@@ -1,4 +1,4 @@
-package com.escloud.httpClient;
+package com.codeages.escloud.httpClient;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.*;

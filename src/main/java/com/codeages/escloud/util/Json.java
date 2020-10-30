@@ -1,4 +1,4 @@
-package com.escloud.util;
+package com.codeages.escloud.util;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

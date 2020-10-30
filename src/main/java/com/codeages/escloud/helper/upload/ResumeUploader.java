@@ -1,7 +1,7 @@
-package com.escloud.helper.upload;
+package com.codeages.escloud.helper.upload;
 
-import com.escloud.httpClient.Client;
-import com.escloud.util.Json;
+import com.codeages.escloud.httpClient.Client;
+import com.codeages.escloud.util.Json;
 import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
 

@@ -1,6 +1,6 @@
-package com.escloud.service;
+package com.codeages.escloud.service;
 
-import com.escloud.Auth;
+import com.codeages.escloud.Auth;
 
 import java.util.Date;
 import java.util.Map;
