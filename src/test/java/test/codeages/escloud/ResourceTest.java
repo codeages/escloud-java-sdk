@@ -12,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
@@ -174,8 +173,8 @@ public class ResourceTest {
 
     @Test
     public void UploadTest() throws URISyntaxException, IOException {
-        File file = new File("/var/www/edusoho.mp4");
-        this.resourceService.upload(file, "111112323333");
+//        File file = new File("/var/www/edusoho.mp4");
+//        this.resourceService.upload(file, "111112323333");
     }
 
     protected Map mockResource() {
