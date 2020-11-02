@@ -7,8 +7,9 @@
     <name>escloud-java-sdk</name>
     <groupId>com.codeages</groupId>
     <artifactId>escloud-java-sdk</artifactId>
-    <version>1.0-RELEASES</version>
+    <version>1.0.0-RELEASES</version>
     <description>java SDK for escloud</description>
+    <url>https://github.com/codeages/escloud-java-sdk</url>
 
     <properties>
         <java.version>11</java.version>
@@ -95,198 +96,124 @@
         </dependency>
 
     </dependencies>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution></distribution>
+        </license>
+    </licenses>
 
-    	<licenses>
-    		<license>
-    			<name>The Apache Software License, Version 2.0</name>
-    			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-    			<distribution></distribution>
-    		</license>
-    	</licenses>
+    <developers>
+        <developer>
+            <name>codeages</name>
+            <email>codeages@howzhi.com</email>
+            <organization>codeages</organization>
+            <url>https://github.com/codeages/escloud-java-sdk</url>
+        </developer>
+    </developers>
 
-    	<developers>
-    		<developer>
-    			<name>codeages</name>
-    			<email>codeages@howzhi.com</email>
-    			<organization>codeages</organization>
-    			<url>https://github.com/spring-skeleton</url>
-    		</developer>
-    	</developers>
+    <scm>
+        <url>https://github.com/codeages/escloud-java-sdk</url>
+        <connection>https://github.com/codeages/escloud-java-sdk.git</connection>
+        <developerConnection>scm:git:https://github.com/codeages/escloud-java-sdk.git</developerConnection>
+        <tag>${project.version}</tag>
+    </scm>
 
-
-    	<scm>
-    		<url>https://github.com/codeages/escloud-java-sdk</url>
-    		<connection>https://github.com/codeages/escloud-java-sdk.git</connection>
-    		<developerConnection>scm:git:https://github.com/codeages/escloud-java-sdk.git</developerConnection>
-    		<tag>${project.version}</tag>
-    	</scm>
-
-    	<!--发布到maven仓库-->
-    	<distributionManagement>
-    		<repository>
-    			<id>ossrh</id>
-    			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    		</repository>
-    		<snapshotRepository>
-    			<id>ossrh</id>
-    			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    		</snapshotRepository>
-    	</distributionManagement>
+    <!--发布到maven仓库-->
+    <distributionManagement>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
-                    <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                        <encoding>${compiler.encoding}</encoding>
-                        <annotationProcessorPaths>
-                            <path>
-                                <groupId>org.projectlombok</groupId>
-                                <artifactId>lombok</artifactId>
-                                <version>${org.projectlombok.version}</version>
-                            </path>
-                            <path>
-                                <groupId>org.mapstruct</groupId>
-                                <artifactId>mapstruct-processor</artifactId>
-                                <version>${org.mapstruct.version}</version>
-                            </path>
-                        </annotationProcessorPaths>
-                        <compilerArgs>
-                            <compilerArg>
-                                -Amapstruct.suppressGeneratorTimestamp=true
-                            </compilerArg>
-                            <compilerArg>
-                                -Amapstruct.suppressGeneratorVersionInfoComment=true
-                            </compilerArg>
-                        </compilerArgs>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.2.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>3.1.1</version>
-                    <executions>
-                        <execution>
-                            <id>copy</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>copy-dependencies</goal>
-                            </goals>
-                            <configuration>
-                                <outputDirectory>
-                                    ./target/lib
-                                </outputDirectory>
-                                <includeScope>runtime</includeScope>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>2.2.1</version>
-                    <executions>
-                        <execution>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.2.0</version>
-                    <configuration>
-                        <encoding>${compiler.encoding}</encoding>
-                        <charset>${compiler.encoding}</charset>
-                        <docencoding>${compiler.encoding}</docencoding>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>attach-javadocs</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.12.4</version>
-                    <configuration>
-                        <includes>
-                            <include>**/*Test.java</include>
-                        </includes>
-                        <excludes>
-                            <exclude>**/BaseTest.java</exclude>
-                        </excludes>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <version>1.8</version>
-                    <executions>
-                        <execution>
-                            <id>package</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>run</goal>
-                            </goals>
-                            <configuration>
-                                <tasks>
-                                    <copy todir="${project.build.directory}/${project.name}/lib" overwrite="true">
-                                        <fileset dir="${project.build.directory}/lib">
-                                            <include name="*.jar"/>
-                                        </fileset>
-                                    </copy>
-                                    <copy tofile="${project.build.directory}/${project.name}/${project.name}.jar"
-                                          file="${project.build.directory}/${project.name}.jar" overwrite="true"/>
-                                    <mkdir dir="${project.build.directory}/${project.name}/config"/>
-                                    <copy todir="${project.build.directory}/${project.name}/config" overwrite="true">
-                                        <fileset dir="src/main/resources">
-                                            <include name="application-*.properties"/>
-                                        </fileset>
-                                    </copy>
-                                </tasks>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-gpg-plugin</artifactId>
-                    <version>1.6</version>
-                    <executions>
-                        <execution>
-                            <id>sign-artifacts</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>sign</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${compiler.encoding}</encoding>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${org.projectlombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                    <compilerArgs>
+                        <compilerArg>
+                            -Amapstruct.suppressGeneratorTimestamp=true
+                        </compilerArg>
+                        <compilerArg>
+                            -Amapstruct.suppressGeneratorVersionInfoComment=true
+                        </compilerArg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <encoding>${compiler.encoding}</encoding>
+                    <charset>${compiler.encoding}</charset>
+                    <docencoding>${compiler.encoding}</docencoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
