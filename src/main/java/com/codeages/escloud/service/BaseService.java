@@ -13,18 +13,9 @@ public class BaseService {
     protected Auth auth;
 
     private Client client;
-    /**
-     * API hosts
-     *
-     * @var string
-     */
+
     protected String host;
 
-    /**
-     * API leaf host
-     *
-     * @var string
-     */
     protected String leafHost;
 
     public void init(Auth auth, Map<String, String> options) {

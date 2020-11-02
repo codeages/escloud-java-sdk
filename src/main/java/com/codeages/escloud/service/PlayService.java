@@ -15,13 +15,7 @@ public class PlayService extends BaseService {
         String host = options.put("host", this.host);
         init(auth, options);
     }
-
-    /**
-     * @param no
-     * @param lifetime
-     * @param payload
-     * @return token
-     */
+    
     public String makePlayToken(String no, int lifetime, Map<String, Object> payload) {
         payload.put("no", no);
         payload.put("exp", new Date(System.currentTimeMillis() + lifetime * 1000));

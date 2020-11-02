@@ -1,18 +1,16 @@
 package com.codeages.escloud;
 
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTCreator;
+import com.auth0.jwt.algorithms.Algorithm;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Date;
-
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTCreator;
-
 import java.util.Map;
-
 import java.util.Random;
 
 public class Auth {
@@ -52,12 +50,6 @@ public class Auth {
         }
     }
 
-
-    /**
-     * @param uri
-     * @param lifetime
-     * @return
-     */
     public String makeRequestAuthorization(String uri, int lifetime) {
         JWTCreator.Builder builder = JWT.create();
 
@@ -69,10 +61,6 @@ public class Auth {
         return "Bearer " + builder.sign(algorithm);
     }
 
-    /**
-     * @param payload
-     * @return
-     */
     public String makeJwtToken(Map<String, Object> payload) {
         JWTCreator.Builder builder = JWT.create();
 
@@ -89,7 +77,6 @@ public class Auth {
         Algorithm algorithm = Algorithm.HMAC256(this.secretKey);
         return builder.sign(algorithm);
     }
-
 
     protected static String getRandomString(int length) {
         String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

@@ -15,20 +15,13 @@ public final class FileRecorder implements Recorder {
 
     /**
      * 断点记录文件保存的目录
-     *
-     * @param directory
-     * @throws IOException
+     * @param directory 断点续传目录
+     * @throws IOException IO错误
      */
     public FileRecorder(String directory) throws IOException {
         this(new File(directory));
     }
 
-    /**
-     * 断点记录文件保存的目录
-     *
-     * @param directory
-     * @throws IOException
-     */
     public FileRecorder(File directory) throws IOException {
         this.directory = directory;
         if (!directory.exists()) {
@@ -43,12 +36,6 @@ public final class FileRecorder implements Recorder {
         }
     }
 
-    /**
-     * 纪录分片上传进度
-     *
-     * @param key  上传文件进度文件保存名
-     * @param data 上传文件的进度数据
-     */
     @Override
     public synchronized void set(String key, byte[] data) {
         File f = new File(directory, key);
@@ -69,11 +56,6 @@ public final class FileRecorder implements Recorder {
         }
     }
 
-    /**
-     * 获取分片上传进度
-     *
-     * @param key 上传文件进度文件保存名
-     */
     @Override
     public synchronized byte[] get(String key) {
         File f = new File(directory, key);
@@ -111,11 +93,6 @@ public final class FileRecorder implements Recorder {
         return f.lastModified() + 1000 * 3600 * 24 * 5 < System.currentTimeMillis();
     }
 
-    /**
-     * 删除已上传文件的进度文件
-     *
-     * @param key 上传文件进度文件保存名
-     */
     @Override
     public synchronized void del(String key) {
         File f = new File(directory, key);
