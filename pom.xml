@@ -12,7 +12,7 @@
     <url>https://github.com/codeages/escloud-java-sdk</url>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
         <compiler.encoding>UTF-8</compiler.encoding>
         <org.projectlombok.version>1.18.10</org.projectlombok.version>
         <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
