@@ -65,11 +65,11 @@ public class Auth {
         JWTCreator.Builder builder = JWT.create();
 
         for (String key : payload.keySet()) {
-            if (payload.get(key).getClass().toString() == "Boolean") {
+            if (payload.get(key) instanceof Boolean) {
                 builder.withClaim(key, (Boolean) payload.get(key));
-            } else if (payload.get(key).getClass().toString() == "String") {
+            } else if (payload.get(key) instanceof String) {
                 builder.withClaim(key, (String) payload.get(key));
-            } else if (payload.get(key).getClass().toString() == "Date") {
+            } else if (payload.get(key) instanceof Date) {
                 builder.withClaim(key, (Date) payload.get(key));
             }
         }
