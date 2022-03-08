@@ -7,7 +7,7 @@
     <name>escloud-java-sdk</name>
     <groupId>com.codeages</groupId>
     <artifactId>escloud-java-sdk</artifactId>
-    <version>1.0.1-RELEASES</version>
+    <version>1.0.2-RELEASES</version>
     <description>java SDK for escloud</description>
     <url>https://github.com/codeages/escloud-java-sdk</url>
 
