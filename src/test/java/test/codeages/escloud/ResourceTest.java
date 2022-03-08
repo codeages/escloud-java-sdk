@@ -87,7 +87,7 @@ public class ResourceTest {
         Map params = new HashMap();
         params.put("type", "video");
 
-        Map result = this.resourceService.getDownloadUrl("test_no_1");
+        Map result = this.resourceService.getDownloadUrl("test_no_1", false);
 
         Assert.assertEquals(mockResult.get("downloadUrl"), result.get("downloadUrl"));
     }

@@ -25,7 +25,7 @@ public class Client {
             if (!params.isEmpty()) {
                 StringBuilder uriBuilder = new StringBuilder(uri.indexOf("?") > 0 ? uri + "&" : uri + "?");
                 for (String key : params.keySet()) {
-                    uriBuilder.append(params.get(key)).append("=");
+                    uriBuilder.append(key).append("=").append(params.get(key)).append("&");
                 }
                 uri = uriBuilder.toString();
 

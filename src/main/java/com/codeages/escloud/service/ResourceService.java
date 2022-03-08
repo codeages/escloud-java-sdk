@@ -36,8 +36,12 @@ public class ResourceService extends BaseService {
         return Json.jsonToObjectList(this.request("GET", "/resources", params, new HashMap<>(), "root"), Resource.class);
     }
 
-    public Map getDownloadUrl(String no) throws UnsupportedEncodingException, URISyntaxException, JSONException {
-        return Json.jsonToObject(this.request("GET", "/resources/" + no + "/downloadUrl", new HashMap<>(), new HashMap<>(), "root"), Map.class);
+    public Map getDownloadUrl(String no, Boolean isSsl) throws UnsupportedEncodingException, URISyntaxException, JSONException {
+        HashMap<String, String> requestParams = new HashMap<String, String>();
+        if (isSsl) {
+            requestParams.put("isSsl", "1");
+        }
+        return Json.jsonToObject(this.request("GET", "/resources/" + no + "/downloadUrl", requestParams, new HashMap<>(), "root"), Map.class);
     }
 
     public Resource rename(String no, String name) throws UnsupportedEncodingException, URISyntaxException, JSONException {
