@@ -9,10 +9,10 @@ import java.util.Map;
  * 播放服务
  */
 public class PlayService extends BaseService {
-    protected String host = "play.qiqiuyun.net";
+    protected String defaultHost = "play.qiqiuyun.net";
 
     public PlayService(Auth auth, Map<String, String> options) {
-        String host = options.put("host", this.host);
+        options.put("host", options.containsKey("host") ? options.get("host") : this.defaultHost);
         init(auth, options);
     }
 

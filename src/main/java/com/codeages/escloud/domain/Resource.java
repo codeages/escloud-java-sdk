@@ -1,6 +1,7 @@
 package com.codeages.escloud.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Resource implements Serializable {
     /**
@@ -42,6 +43,11 @@ public class Resource implements Serializable {
      * 转码状态
      */
     private String processStatus;
+
+    /**
+     * 转码进度
+     */
+    private List<LevelStatus> levelsStatus;
 
     /**
      * 是否分享
@@ -157,5 +163,21 @@ public class Resource implements Serializable {
 
     public void setUpdatedTime(Integer updatedTime) {
         this.updatedTime = updatedTime;
+    }
+
+    public List<LevelStatus> getLevelsStatus() {
+        return levelsStatus;
+    }
+
+    public void setLevelsStatus(List<LevelStatus> levelsStatus) {
+        this.levelsStatus = levelsStatus;
+    }
+
+    public Integer getIsShare() {
+        return isShare;
+    }
+
+    public void setIsShare(Integer isShare) {
+        this.isShare = isShare;
     }
 }
